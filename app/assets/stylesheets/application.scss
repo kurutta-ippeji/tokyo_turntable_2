@@ -38,3 +38,40 @@ body {
 .navbar-brand img {
   height: 432px;
 }
+
+.navbar-logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-logo-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px 10px;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navbar-logo-text-jp {
+  position: absolute;
+  top: 38px;
+  left: 18px;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.navbar-tagline {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
