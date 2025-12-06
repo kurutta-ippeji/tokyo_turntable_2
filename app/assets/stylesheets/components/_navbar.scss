@@ -23,19 +23,38 @@
   display: inline-block;
 }
 
-.navbar-logo-bg {
+.navbar-logo-tagline {
   position: absolute;
-  top: 90px;
-  left: 34px;
+  top: 0;
+  right: 0;
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  font-size: 2.6rem;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px;
+}
+
+.navbar-phrases {
+  position: absolute;
+  top: 82px;
+  left: 34px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.navbar-phrase-col {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.05em;
   writing-mode: vertical-rl;
   text-orientation: upright;
   line-height: 1.6;
-  opacity: 0.18;
-  pointer-events: none;
+  text-transform: uppercase;
 }
 
 .navbar-logo-text {
@@ -48,14 +67,4 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.navbar-tagline {
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px;
-  position: absolute;
-  top: 0;
-  right: 0;
 }

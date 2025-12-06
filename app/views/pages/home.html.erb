@@ -1,8 +1,11 @@
-<%= render "shared/navbar" %>
-<%= render "shared/vertical_navbar" %>
-<div class="container">
+<div data-controller="about">
+  <%= render "shared/navbar" %>
+  <%= render "shared/vertical_navbar" %>
+  <div class="container">
+  </div>
+  <div data-about-target="content" class="about-description hidden">
+    <div class="about-content-wrapper">
+      <p>We help you find music happening around Tokyo. Whether your're looking for a vinyl bar, jazz cafe, an underground live show, or a vinyl record, we've got you covered. Find what finds you.</p>
+    </div>
+  </div>
 </div>
-<section id="about" class="about-section">
-  <h2>About</h2>
-  <!-- Add your about content here -->
-</section>
