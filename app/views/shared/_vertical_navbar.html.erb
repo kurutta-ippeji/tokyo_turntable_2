@@ -1,5 +1,5 @@
 <nav class="vertical-navbar">
-  <%= link_to "About", "#", class: "vertical-navbar-link", data: { action: "click->about#toggle" } %>
-  <%= link_to "Subscription", "#subscribe", class: "vertical-navbar-link" %>
-  <%= link_to "Contact", "#contact", class: "vertical-navbar-link" %>
+  <%= link_to "About", "#", class: "vertical-navbar-link", data: { action: "click->about#show", about_target: "button" } %>
+  <%= link_to "Subscription", "#subscribe", class: "vertical-navbar-link", data: { action: "click->about#close" } %>
+  <%= link_to "Contact", "#contact", class: "vertical-navbar-link", data: { action: "click->about#close" } %>
 </nav>

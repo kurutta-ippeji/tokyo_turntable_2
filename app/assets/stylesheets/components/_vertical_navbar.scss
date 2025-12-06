@@ -20,7 +20,8 @@
   padding: 10px 5px;
   transition: opacity 0.2s;
 
-  &:hover {
+  &:hover,
+  &.active {
     opacity: 0.6;
     text-decoration: none;
     color: #000;
