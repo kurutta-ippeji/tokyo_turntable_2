@@ -38,7 +38,7 @@
 .navbar-phrases {
   position: absolute;
   top: 82px;
-  left: 34px;
+  left: 28px;
   display: flex;
   align-items: flex-start;
   gap: 2em;
@@ -47,14 +47,18 @@
 }
 
 .navbar-phrase-col {
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  writing-mode: vertical-rl;
+  font-family: "Bebas Neue", "Impact", "Arial Black", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  writing-mode: horizontal-tb;
   text-orientation: upright;
-  line-height: 1.6;
+  line-height: 1.2;
   text-transform: uppercase;
+  text-shadow:
+    2px 2px 0px rgba(0, 0, 0, 0.3),
+    -1px -1px 0px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.1em;
 }
 
 .navbar-logo-text {
