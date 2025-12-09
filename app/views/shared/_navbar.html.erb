@@ -11,6 +11,10 @@
         <span class="navbar-phrase-col">Japanese vinyl</span>
       </span>
     </div>
-    <span class="navbar-logo-tagline">What's playing?</span>
+    <div class="navbar-logo-tagline"
+      id="widget"
+      data-controller="widget"
+      data-widget-playlist-id-value="<%= Rails.application.credentials.spotify[:playlist_id] %>">
+    </div>
   </div>
 </nav>
