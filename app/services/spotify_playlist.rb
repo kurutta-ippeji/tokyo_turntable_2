@@ -29,9 +29,17 @@ class SpotifyPlaylist
       track = item["track"]
       next nil unless track # Skip null tracks
 
+      # Get album art (use the smallest image, or medium if available)
+      album_art = track.dig("album", "images")&.last&.dig("url") ||
+                  track.dig("album", "images")&.first&.dig("url") ||
+                  nil
+
       {
         track_name: track["name"],
-        artist_name: track["artists"]&.map { |a| a["name"] }&.join(", ") || "Unknown Artist"
+        artist_name: track["artists"]&.map { |a| a["name"] }&.join(", ") || "Unknown Artist",
+        album_art: album_art,
+        track_uri: track["uri"],
+        track_url: track.dig("external_urls", "spotify") || nil
       }
     end&.compact || []
 
