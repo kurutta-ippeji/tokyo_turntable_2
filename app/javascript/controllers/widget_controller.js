@@ -49,7 +49,6 @@ export default class extends Controller {
 
         this.element.innerHTML = `
           <div class="widget-inner">
-            <h3 class="widget-header">In Rotation:</h3>
             <div class="widget-player">
               <iframe
                 src="${embedUrl}"
