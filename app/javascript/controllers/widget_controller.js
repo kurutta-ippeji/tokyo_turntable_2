@@ -10,14 +10,23 @@ export default class extends Controller {
   loadTrack() {
     const playlistId = this.playlistIdValue
 
-    if (!playlistId) {
-      console.error("Widget: Playlist ID not found")
-      this.element.innerHTML = "<p>Playlist ID not found.</p>"
+    if (!playlistId || playlistId === "YOUR_PLAYLIST_ID_HERE") {
+      console.error("Widget: Playlist ID not found or not configured")
+      this.element.innerHTML = "<p>Please configure your Spotify playlist ID in the navbar.</p>"
       return
     }
 
     fetch(`/spotify/playlist/${playlistId}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(data => {
+            throw new Error(data.error || `HTTP error! status: ${res.status}`)
+          }).catch(() => {
+            throw new Error(`HTTP error! status: ${res.status}`)
+          })
+        }
+        return res.json()
+      })
       .then(tracks => {
         if (!tracks || !tracks.length || tracks.error) {
           this.element.innerHTML = "<p>No tracks available.</p>"
@@ -40,16 +49,15 @@ export default class extends Controller {
 
         this.element.innerHTML = `
           <div class="widget-inner">
+            <h3 class="widget-header">In Rotation:</h3>
             <div class="widget-player">
               <iframe
                 src="${embedUrl}"
-                width="60%"
-                height="80"
                 frameBorder="0"
-                allowfullscreen=""
+                allowtransparency="true"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-                style="border-radius: 8px;">
+                class="widget-iframe">
               </iframe>
             </div>
           </div>
@@ -57,7 +65,7 @@ export default class extends Controller {
       })
       .catch((error) => {
         console.error("Widget error:", error)
-        this.element.innerHTML = "<p>Error loading track.</p>"
+        this.element.innerHTML = `<p>Error loading track: ${error.message}</p>`
       })
   }
 }

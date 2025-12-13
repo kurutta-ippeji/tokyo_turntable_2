@@ -62,22 +62,13 @@
   text-align: center;
 }
 
-.widget-track-name {
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-  color: #000;
-  line-height: 1.3;
-}
-
-.widget-artist-name {
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  margin: 0 0 8px 0;
-  color: #666;
-  line-height: 1.3;
+.widget-header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .widget-player {

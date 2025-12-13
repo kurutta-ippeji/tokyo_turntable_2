@@ -11,10 +11,24 @@
         <span class="navbar-phrase-col">Japanese vinyl</span>
       </span>
     </div>
-    <div class="navbar-logo-tagline"
-      id="widget"
-      data-controller="widget"
-      data-widget-playlist-id-value="<%= Rails.application.credentials.spotify[:playlist_id] %>">
+    <div class="navbar-logo-tagline" id="widget">
+      <% if defined?(@spotify_embed_url) && @spotify_embed_url.present? %>
+        <div class="widget-inner">
+          <h3 class="widget-header">In Rotation:</h3>
+          <div class="widget-player">
+            <iframe
+              src="<%= @spotify_embed_url %>"
+              frameBorder="0"
+              allowtransparency="true"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              class="widget-iframe">
+            </iframe>
+          </div>
+        </div>
+      <% else %>
+        <div data-controller="widget" data-widget-playlist-id-value="<%= Rails.application.credentials.spotify[:playlist_id] %>"></div>
+      <% end %>
     </div>
   </div>
 </nav>
