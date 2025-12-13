@@ -64,11 +64,16 @@
 
 .widget-header {
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-align: center;
   margin-bottom: 0;
+  background-color: rgb(18, 18, 18);
+  color: $red;
+  font-family: $shiguma-font;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .widget-player {
@@ -87,7 +92,7 @@
   left: 28px;
   display: flex;
   align-items: flex-start;
-  gap: 2em;
+  gap: .7em;
   opacity: 0.4;
   pointer-events: none;
 }
