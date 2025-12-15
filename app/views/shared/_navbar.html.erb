@@ -14,7 +14,6 @@
     <div class="navbar-logo-tagline" id="widget">
       <% if defined?(@spotify_embed_url) && @spotify_embed_url.present? %>
         <div class="widget-inner">
-          <h3 class="widget-header">In Rotation:</h3>
           <div class="widget-player">
             <iframe
               src="<%= @spotify_embed_url %>"
