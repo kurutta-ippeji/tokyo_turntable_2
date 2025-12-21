@@ -13,14 +13,22 @@ export default function SpotifyWidget({ playlistId }) {
     setEmbedUrl(null);
     setLoading(true);
 
-    // Only show error if playlistId is truly missing (not just empty string initially)
+    // If playlistId is null/undefined, keep loading (it might be passed down soon)
+    // Only set error if playlistId is explicitly an empty string (confirmed missing)
+    if (playlistId === null || playlistId === undefined) {
+      // Keep loading - playlistId might be passed down in next render
+      return;
+    }
+
+    // Only show error if playlistId is truly missing (empty string or invalid)
     const isValidPlaylistId = playlistId &&
                                playlistId !== "YOUR_PLAYLIST_ID_HERE" &&
+                               playlistId !== "" &&
                                (typeof playlistId !== 'string' || playlistId.trim() !== "");
 
     if (!isValidPlaylistId) {
-      // Only set error if we're sure it's missing (not just loading)
-      if (playlistId === "" || playlistId === null || playlistId === undefined) {
+      // Only set error if it's explicitly empty (not null/undefined)
+      if (playlistId === "") {
         setError("Playlist ID not configured");
       }
       setLoading(false);
@@ -86,12 +94,14 @@ export default function SpotifyWidget({ playlistId }) {
     );
   }
 
+  // Don't show error while loading - wait for fetch to complete
   if (loading) {
     return null; // Or a loading spinner if you want
   }
 
-  // Only show error if we don't have an embedUrl and there's actually an error
-  if (error) {
+  // Only show error if we're done loading, have no embedUrl, and there's actually an error
+  // Also check that we don't have a valid playlistId (to avoid showing error during initial render)
+  if (error && !loading && !embedUrl && (!playlistId || playlistId === "" || playlistId === null)) {
     return (
       <div className="widget-inner">
         <p style={{ color: 'red', fontSize: '12px' }}>Error loading track: {error}</p>

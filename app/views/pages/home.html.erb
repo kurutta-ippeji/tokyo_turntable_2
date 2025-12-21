@@ -1,5 +1,8 @@
 <div data-controller="about">
-  <%= render "shared/navbar" %>
+  <div id="navbar-root"
+       data-playlist-id="<%= Rails.application.credentials.spotify&.dig(:playlist_id) || '' %>"
+       data-logo-path="<%= image_path('logo3.png') %>">
+  </div>
   <%= render "shared/vertical_navbar" %>
   <div class="container">
   </div>

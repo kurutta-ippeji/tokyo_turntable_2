@@ -2,7 +2,7 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import App from "./components/App"
-import SpotifyWidget from "./components/SpotifyWidget"
+import Navbar from "./components/Navbar"
 
 document.addEventListener("DOMContentLoaded", () => {
   // Mount main App component
@@ -12,20 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
     root.render(React.createElement(App))
   }
 
-  // Mount Spotify widget in navbar
-  const widgetEl = document.getElementById("spotify-widget-root")
-  if (widgetEl) {
-    // data-playlist-id becomes dataset.playlistId (kebab-case to camelCase)
-    const playlistId = widgetEl.dataset.playlistId || widgetEl.getAttribute("data-playlist-id")
-    console.log("Spotify Widget - Element found:", widgetEl)
-    console.log("Spotify Widget - Playlist ID:", playlistId)
+  // Mount Navbar component
+  const navbarEl = document.getElementById("navbar-root")
+  if (navbarEl) {
+    // Get playlist ID from data attribute
+    let playlistId = navbarEl.dataset.playlistId || navbarEl.getAttribute("data-playlist-id")
+    // Convert empty string to null for cleaner prop handling
+    if (playlistId === "" || playlistId === null || playlistId === undefined) {
+      playlistId = null
+    }
+    // Get logo path from data attribute (or use default)
+    const logoPath = navbarEl.dataset.logoPath || "/assets/logo3.png"
+
+    console.log("Navbar - Playlist ID:", playlistId)
+    console.log("Navbar - Logo Path:", logoPath)
+
     try {
-      const widgetRoot = createRoot(widgetEl)
-      widgetRoot.render(React.createElement(SpotifyWidget, { playlistId }))
+      const navbarRoot = createRoot(navbarEl)
+      navbarRoot.render(React.createElement(Navbar, { playlistId, logoPath }))
     } catch (error) {
-      console.error("Error mounting Spotify widget:", error)
+      console.error("Error mounting Navbar:", error)
     }
   } else {
-    console.error("Spotify widget mount point not found: #spotify-widget-root")
+    console.error("Navbar mount point not found: #navbar-root")
   }
 })
