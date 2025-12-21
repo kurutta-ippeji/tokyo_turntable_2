@@ -64,9 +64,7 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
           <a href="/" className="navbar-brand d-flex align-items-center" data-turbo="false">
             <img src={logoPath} alt="Tokyo Turntable" className="me-2" />
           </a>
-          <span className="navbar-logo-text">Tokyo Turntable
-            <span className="navbar-logo-tagline">Discover Music experiences in Tokyo</span>
-          </span>
+          <span className="navbar-logo-text">Tokyo Turntable</span>
           <span className="navbar-phrases">
             {Object.entries(dropdowns).map(([key, dropdown]) => (
               <div
