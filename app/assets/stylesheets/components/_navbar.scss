@@ -6,6 +6,10 @@
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
+
+  .container-fluid {
+    align-items: flex-start;
+  }
 }
 
 .navbar-brand {
@@ -26,8 +30,18 @@
 
 .navbar-logo-tagline {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: 48px;
+  right: 283px;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px;
+  z-index: 10;
+}
+
+.navbar-logo-tagline-text {
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -76,7 +90,7 @@
 
 .navbar-phrases {
   position: absolute;
-  top: 82px;
+  top: 112px;
   left: 28px;
   display: flex;
   align-items: flex-start;
@@ -110,4 +124,22 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+
+  .navbar-logo-tagline {
+    position: static;
+    font-size: 0.5em;
+    margin-top: 4px;
+    padding: 0;
+    opacity: 0.7;
+  }
+}
+
+.navbar-widget-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  align-self: flex-start;
 }
