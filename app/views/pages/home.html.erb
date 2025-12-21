@@ -1,15 +1,11 @@
-<div data-controller="about">
+<div>
   <div id="navbar-root"
        data-playlist-id="<%= Rails.application.credentials.spotify&.dig(:playlist_id) || '' %>"
        data-logo-path="<%= image_path('logo3.png') %>">
   </div>
-  <%= render "shared/vertical_navbar" %>
+  <div id="vertical-navbar-root"></div>
   <div class="container">
   </div>
-  <div data-about-target="content" class="about-description hidden">
-    <div class="about-content-wrapper">
-      <p>We are a hub for exploring Tokyo through sound. Whether it's an underground live show, an intimate listening experience, or a hand-picked Japanese vinyl, you're sure to find what you're looking for.</p>
-    </div>
-  </div>
+  <div id="about-root"></div>
   <div id="react-root"></div>
 </div>
