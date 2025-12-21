@@ -1,0 +1,32 @@
+{
+  "name": "tokyo_turntable_2",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild app/javascript/react_entry.js --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.jsx=jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurutta-ippeji/tokyo_turntable_2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kurutta-ippeji/tokyo_turntable_2/issues"
+  },
+  "homepage": "https://github.com/kurutta-ippeji/tokyo_turntable_2#readme",
+  "devDependencies": {
+    "esbuild": "^0.27.1"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
