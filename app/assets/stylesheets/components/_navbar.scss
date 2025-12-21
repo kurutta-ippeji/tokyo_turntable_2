@@ -30,19 +30,22 @@
 
 .navbar-logo-tagline {
   position: absolute;
-  top: 48px;
-  right: 283px;
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  top: 54px;
+  right: 286px;
+  font-family: $tagline-font, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: 1rem;
+  border-radius: 8px;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 8px;
+  padding: 4px;
   z-index: 10;
+  color: $cream;
+  opacity: 0.6;
 }
 
 .navbar-logo-tagline-text {
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-family: $tagline-font, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -91,12 +94,12 @@
 .navbar-phrases {
   position: absolute;
   top: 112px;
-  left: 28px;
+  left: 24px;
   display: flex;
   align-items: flex-start;
   gap: 1em;
   opacity: 0.4;
-  pointer-events: none;
+  pointer-events: auto; // Changed from none to allow interactions
 }
 
 .navbar-phrase-col {
@@ -112,6 +115,76 @@
     2px 2px 0px rgba(0, 0, 0, 0.3),
     -1px -1px 0px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.1em;
+  position: relative;
+}
+
+.navbar-dropdown {
+  position: relative;
+}
+
+.navbar-dropdown-toggle {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-shadow: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  opacity: inherit;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+.navbar-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  padding: 8px 0;
+  background-color: $cream;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  min-width: 180px;
+  z-index: 1000;
+  opacity: 1;
+  pointer-events: auto;
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    display: block;
+    padding: 10px 16px;
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    text-shadow: none;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
 }
 
 .navbar-logo-text {
@@ -119,7 +192,7 @@
   top: 10px;
   left: 18px;
   padding: 0;
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-family: $tagline-font, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: 2.1rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -134,6 +207,7 @@
     margin-top: 4px;
     padding: 0;
     opacity: 0.7;
+    font-family: $tagline-font, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   }
 }
 
