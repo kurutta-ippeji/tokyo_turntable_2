@@ -4,8 +4,10 @@ import SpotifyWidget from "./SpotifyWidget";
 export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRefs = {
-    listeningSpaces: useRef(null),
-    japaneseVinyl: useRef(null)
+    spaces: useRef(null),
+    stores: useRef(null),
+    guides: useRef(null),
+    about: useRef(null)
   };
 
   // Close dropdown when clicking outside
@@ -30,20 +32,33 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
   };
 
   const dropdowns = {
-    listeningSpaces: {
-      label: "listening spaces",
+    spaces: {
+      label: "spaces",
       items: [
-        { label: "Cafes", href: "/listening-spaces/cafes" },
-        { label: "Bars", href: "/listening-spaces/bars" },
-        { label: "Record Stores", href: "/listening-spaces/record-stores" }
+        { label: "Jazz Kissaten", href: "/spaces/jazz-kissaten" },
+        { label: "Bars", href: "/spaces/bars" },
+        { label: "By Area", href: "/spaces/by-area" }
       ]
     },
-    japaneseVinyl: {
-      label: "Japanese vinyl",
+    stores: {
+      label: "stores",
       items: [
-        { label: "New Releases", href: "/vinyl/new-releases" },
-        { label: "Classics", href: "/vinyl/classics" },
-        { label: "Rare Finds", href: "/vinyl/rare" }
+        { label: "Notable", href: "/stores/notable" },
+        { label: "By Area", href: "/stores/by-area" },
+      ]
+    },
+    guides: {
+      label: "guides",
+      items: [
+        { label: "Getting Started", href: "/guides/getting-started" },
+        { label: "Events", href: "/guides/events" }
+      ]
+    },
+    about: {
+      label: "about",
+      items: [
+        { label: "About Us", href: "/about" },
+        { label: "Contact", href: "/contact" }
       ]
     }
   };
