@@ -1,10 +1,22 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700|Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700|Bebas+Neue|Montserrat:300,400,500|Raleway:300,400,500|Inter:300,400,500|Playfair+Display:400,500|Lato:300,400|Poppins:300,400|Space+Grotesk:300,400,500|DM+Sans:300,400,500|Outfit:300,400,500|Sora:300,400,500|Plus+Jakarta+Sans:300,400,500|Manrope:300,400,500|Syne:400,500,600|Clash+Display:400,500|Space+Mono:400&display=swap');
 
 // Define fonts for body and headers
 $body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$headers-font: "Space Mono", monospace;
 $shiguma-font: "ab-shiguma", sans-serif;
+
+// Tagline font options - Unique & Distinctive (uncomment the one you want to use)
+// $tagline-font: "Space Grotesk", sans-serif;     // Modern, geometric, very unique
+// $tagline-font: "Syne", sans-serif;                // Bold, contemporary, very distinctive
+// $tagline-font: "Clash Display", sans-serif;      // Bold, unique, eye-catching
+// $tagline-font: "Outfit", sans-serif;              // Modern, unique geometric
+// $tagline-font: "Sora", sans-serif;                 // Contemporary, distinctive
+// $tagline-font: "Plus Jakarta Sans", sans-serif;   // Modern, unique Indonesian-inspired
+// $tagline-font: "Manrope", sans-serif;              // Geometric, unique, clean
+// $tagline-font: "DM Sans", sans-serif;              // Distinctive, modern
+$tagline-font: "Space Mono", monospace;            // Monospace, very unique, tech-forward
+// $tagline-font: "Space Grotesk", sans-serif;           // Default: unique and modern
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
