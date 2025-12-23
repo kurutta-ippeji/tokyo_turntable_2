@@ -4,7 +4,6 @@ import SpotifyWidget from "./SpotifyWidget";
 export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRefs = {
-    liveShows: useRef(null),
     listeningSpaces: useRef(null),
     japaneseVinyl: useRef(null)
   };
@@ -31,14 +30,6 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
   };
 
   const dropdowns = {
-    liveShows: {
-      label: "live shows",
-      items: [
-        { label: "Upcoming Shows", href: "/live-shows/upcoming" },
-        { label: "Venues", href: "/live-shows/venues" },
-        { label: "Past Events", href: "/live-shows/past" }
-      ]
-    },
     listeningSpaces: {
       label: "listening spaces",
       items: [
@@ -64,7 +55,12 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
           <a href="/" className="navbar-brand d-flex align-items-center" data-turbo="false">
             <img src={logoPath} alt="Tokyo Turntable" className="me-2" />
           </a>
-          <span className="navbar-logo-text">Tokyo Turntable</span>
+          <span className="navbar-logo-text">Tokyo Turntable
+            <span className="navbar-logo-tagline">
+              A hub for listening<br />
+              and vinyl culture in Tokyo
+            </span>
+          </span>
           <span className="navbar-phrases">
             {Object.entries(dropdowns).map(([key, dropdown]) => (
               <div
