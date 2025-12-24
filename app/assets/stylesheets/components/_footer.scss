@@ -1,13 +1,20 @@
 .footer {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 20px;
+  pointer-events: none;
 }
 
 .footer-qr-link {
   display: inline-block;
   transition: opacity 0.2s;
+  pointer-events: auto;
 
   &:hover {
     opacity: 0.8;
@@ -18,4 +25,14 @@
   max-width: 170px;
   height: auto;
   display: block;
+}
+
+.footer-copyright {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: .9rem;
+  color: #000;
+  opacity: 0.5;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
 }

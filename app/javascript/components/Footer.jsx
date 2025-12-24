@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function Footer({ qrImagePath = "/assets/tempImageeKmAyg 1.png" }) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <a
@@ -15,6 +17,9 @@ export default function Footer({ qrImagePath = "/assets/tempImageeKmAyg 1.png" }
           className="footer-qr-image"
         />
       </a>
+      <p className="footer-copyright">
+        © {currentYear} Tokyo Turntable
+      </p>
     </footer>
   );
 }
