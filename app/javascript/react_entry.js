@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mount Footer component
   const footerEl = document.getElementById("footer-root")
   if (footerEl) {
-    // Get QR image path from data attribute
-    const qrImagePath = footerEl.dataset.qrImagePath || footerEl.getAttribute("data-qr-image-path") || "/assets/tempImageeKmAyg 1.png"
+    // Get Instagram image path from data attribute
+    const instagramImagePath = footerEl.dataset.instagramImagePath || footerEl.getAttribute("data-instagram-image-path") || "/assets/instagram_logo.png"
     try {
       const footerRoot = createRoot(footerEl)
-      footerRoot.render(React.createElement(Footer, { qrImagePath }))
+      footerRoot.render(React.createElement(Footer, { instagramImagePath }))
     } catch (error) {
       console.error("Error mounting Footer:", error)
     }

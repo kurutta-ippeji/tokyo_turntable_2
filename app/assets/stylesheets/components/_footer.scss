@@ -11,20 +11,31 @@
   pointer-events: none;
 }
 
-.footer-qr-link {
+.footer-instagram-wrapper {
+  position: relative;
   display: inline-block;
-  transition: opacity 0.2s;
   pointer-events: auto;
-
-  &:hover {
-    opacity: 0.8;
-  }
 }
 
-.footer-qr-image {
-  max-width: 170px;
+.footer-instagram-image {
+  max-width: 200px;
   height: auto;
   display: block;
+}
+
+.footer-instagram-link-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .footer-copyright {
