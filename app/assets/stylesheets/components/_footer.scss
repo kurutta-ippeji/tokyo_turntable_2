@@ -1,0 +1,21 @@
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.footer-qr-link {
+  display: inline-block;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.footer-qr-image {
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
