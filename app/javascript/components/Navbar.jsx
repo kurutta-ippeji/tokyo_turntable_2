@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import SpotifyWidget from "./SpotifyWidget";
 
-export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
+export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRefs = {
     spaces: useRef(null),
@@ -33,7 +33,7 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
 
   const dropdowns = {
     spaces: {
-      label: "spaces",
+      label: "Spaces",
       items: [
         { label: "Jazz Kissas", href: "/spaces/jazz-kissaten" },
         { label: "Bars", href: "/spaces/bars" },
@@ -41,21 +41,21 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
       ]
     },
     stores: {
-      label: "stores",
+      label: "Stores",
       items: [
         { label: "Notable", href: "/stores/notable" },
         { label: "By Area", href: "/stores/by-area" },
       ]
     },
     guides: {
-      label: "guides",
+      label: "Guides",
       items: [
         { label: "Getting Started", href: "/guides/getting-started" },
         { label: "Events", href: "/guides/events" }
       ]
     },
     about: {
-      label: "about",
+      label: "About",
       items: [
         { label: "About Us", href: "/about" },
         { label: "Contact", href: "/contact" }
@@ -72,36 +72,39 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
           </a>
           <span className="navbar-logo-text">Tokyo Turntable
             <span className="navbar-logo-tagline">
-              A hub for listening<br />
-              and vinyl culture in Tokyo
+              Listening spaces and record stores in Tokyo
             </span>
           </span>
           <span className="navbar-phrases">
-            {Object.entries(dropdowns).map(([key, dropdown]) => (
-              <div
-                key={key}
-                ref={dropdownRefs[key]}
-                className="navbar-phrase-col navbar-dropdown"
-              >
-                <button
-                  className="navbar-dropdown-toggle"
-                  onClick={() => toggleDropdown(key)}
-                  aria-expanded={openDropdown === key}
+            {Object.entries(dropdowns).map(([key, dropdown], index, array) => (
+              <React.Fragment key={key}>
+                <div
+                  ref={dropdownRefs[key]}
+                  className="navbar-phrase-col navbar-dropdown"
                 >
-                  {dropdown.label} ▾
-                </button>
-                {openDropdown === key && (
-                  <ul className="navbar-dropdown-menu">
-                    {dropdown.items.map((item, index) => (
-                      <li key={index}>
-                        <a href={item.href} onClick={() => setOpenDropdown(null)}>
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                  <button
+                    className="navbar-dropdown-toggle"
+                    onClick={() => toggleDropdown(key)}
+                    aria-expanded={openDropdown === key}
+                  >
+                    {dropdown.label}
+                  </button>
+                  {openDropdown === key && (
+                    <ul className="navbar-dropdown-menu">
+                      {dropdown.items.map((item, index) => (
+                        <li key={index}>
+                          <a href={item.href} onClick={() => setOpenDropdown(null)}>
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                {index < array.length - 1 && (
+                  <span className="navbar-phrase-separator">|</span>
                 )}
-              </div>
+              </React.Fragment>
             ))}
           </span>
         </div>
