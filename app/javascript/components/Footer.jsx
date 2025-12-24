@@ -1,22 +1,24 @@
 import React from "react";
 
-export default function Footer({ qrImagePath = "/assets/tempImageeKmAyg 1.png" }) {
+export default function Footer({ instagramImagePath = "/assets/instagram_logo.png" }) {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer">
-      <a
-        href="https://www.instagram.com/tokyoturntable"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="footer-qr-link"
-      >
+      <div className="footer-instagram-wrapper">
         <img
-          src={qrImagePath}
-          alt="Tokyo Turntable Instagram QR Code"
-          className="footer-qr-image"
+          src={instagramImagePath}
+          alt="Tokyo Turntable Instagram"
+          className="footer-instagram-image"
         />
-      </a>
+        <a
+          href="https://www.instagram.com/tokyo.turntable"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-instagram-link-left"
+          aria-label="Instagram - Left Half"
+        />
+      </div>
       <p className="footer-copyright">
         © {currentYear} Tokyo Turntable
       </p>
