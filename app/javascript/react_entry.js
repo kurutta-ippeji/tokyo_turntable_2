@@ -3,8 +3,8 @@ import React from "react"
 import { createRoot } from "react-dom/client"
 import App from "./components/App"
 import Navbar from "./components/Navbar"
-import VerticalNavbar from "./components/VerticalNavbar"
 import About from "./components/About"
+import Footer from "./components/Footer"
 
 document.addEventListener("DOMContentLoaded", () => {
   // Mount main App component
@@ -39,17 +39,19 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Navbar mount point not found: #navbar-root")
   }
 
-  // Mount VerticalNavbar component
-  const verticalNavbarEl = document.getElementById("vertical-navbar-root")
-  if (verticalNavbarEl) {
+  // Mount Footer component
+  const footerEl = document.getElementById("footer-root")
+  if (footerEl) {
+    // Get QR image path from data attribute
+    const qrImagePath = footerEl.dataset.qrImagePath || footerEl.getAttribute("data-qr-image-path") || "/assets/tempImageeKmAyg 1.png"
     try {
-      const verticalNavbarRoot = createRoot(verticalNavbarEl)
-      verticalNavbarRoot.render(React.createElement(VerticalNavbar))
+      const footerRoot = createRoot(footerEl)
+      footerRoot.render(React.createElement(Footer, { qrImagePath }))
     } catch (error) {
-      console.error("Error mounting VerticalNavbar:", error)
+      console.error("Error mounting Footer:", error)
     }
   } else {
-    console.error("VerticalNavbar mount point not found: #vertical-navbar-root")
+    console.error("Footer mount point not found: #footer-root")
   }
 
   // Mount About component

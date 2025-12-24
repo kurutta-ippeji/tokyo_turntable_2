@@ -35,7 +35,7 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo3.png" }) {
     spaces: {
       label: "spaces",
       items: [
-        { label: "Jazz Kissaten", href: "/spaces/jazz-kissaten" },
+        { label: "Jazz Kissas", href: "/spaces/jazz-kissaten" },
         { label: "Bars", href: "/spaces/bars" },
         { label: "By Area", href: "/spaces/by-area" }
       ]
