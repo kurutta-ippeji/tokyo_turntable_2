@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       playlistId = null
     }
     // Get logo path from data attribute (or use default)
-    const logoPath = navbarEl.dataset.logoPath || "/assets/logo3.png"
+    const logoPath = navbarEl.dataset.logoPath || "/assets/logo4.png"
 
     console.log("Navbar - Playlist ID:", playlistId)
     console.log("Navbar - Logo Path:", logoPath)
