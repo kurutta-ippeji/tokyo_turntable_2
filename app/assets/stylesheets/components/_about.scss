@@ -1,13 +1,35 @@
-.about-description {
+.about-container {
   position: fixed;
-  top: 60%;
+  top: 62%;
   left: 60%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  width: 90%;
+}
+
+.about-header {
+  h1 {
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 4px;
+    color: #000;
+  }
+}
+
+.about-description {
   background-color: $cream;
   padding: 40px;
-  max-width: 600px;
-  width: 90%;
+  border-radius: 2px;
+  border-right: 2px solid $red;
+  border-bottom: 2px solid $red;
 }
 
 .about-description.hidden {
@@ -15,5 +37,14 @@
 }
 
 .about-content-wrapper {
-  text-align: center;
+  text-align: left;
+
+  p {
+    margin-bottom: 1.2em;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

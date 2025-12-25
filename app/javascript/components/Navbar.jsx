@@ -1,14 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import SpotifyWidget from "./SpotifyWidget";
+import { aboutState } from "./aboutState";
 
 export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
   const dropdownRefs = {
     spaces: useRef(null),
     stores: useRef(null),
     guides: useRef(null),
     about: useRef(null)
   };
+
+  // Subscribe to aboutState changes
+  useEffect(() => {
+    const unsubscribe = aboutState.subscribe((value) => {
+      setShowAbout(value);
+    });
+    return unsubscribe;
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -53,14 +63,12 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
         { label: "Getting Started", href: "/guides/getting-started" },
         { label: "Events", href: "/guides/events" }
       ]
-    },
-    about: {
-      label: "About",
-      items: [
-        { label: "About Us", href: "/about" },
-        { label: "Contact", href: "/contact" }
-      ]
     }
+  };
+
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+    aboutState.setShowAbout(true);
   };
 
   return (
@@ -76,7 +84,7 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
             </span>
           </span>
           <span className="navbar-phrases">
-            {Object.entries(dropdowns).map(([key, dropdown], index, array) => (
+            {Object.entries(dropdowns).map(([key, dropdown], index) => (
               <React.Fragment key={key}>
                 <div
                   ref={dropdownRefs[key]}
@@ -101,11 +109,17 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
                     </ul>
                   )}
                 </div>
-                {index < array.length - 1 && (
-                  <span className="navbar-phrase-separator">|</span>
-                )}
+                <span className="navbar-phrase-separator">|</span>
               </React.Fragment>
             ))}
+            <div className="navbar-phrase-col">
+              <button
+                className={`navbar-dropdown-toggle ${showAbout ? 'active' : ''}`}
+                onClick={handleAboutClick}
+              >
+                About
+              </button>
+            </div>
           </span>
         </div>
         <div className="navbar-widget-wrapper">
