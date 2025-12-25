@@ -158,7 +158,8 @@
   opacity: inherit;
   transition: opacity 0.2s;
 
-  &:hover {
+  &:hover,
+  &.active {
     opacity: 0.7;
   }
 
