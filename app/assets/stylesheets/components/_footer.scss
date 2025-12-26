@@ -1,6 +1,6 @@
 .footer {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -11,14 +11,21 @@
   pointer-events: none;
 }
 
-.footer-instagram-wrapper {
-  position: relative;
-  display: inline-block;
+.footer-instagram-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
   pointer-events: auto;
 }
 
+.footer-instagram-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .footer-instagram-image {
-  max-width: 200px;
+  max-width: 87px;
   height: auto;
   display: block;
 }
@@ -36,6 +43,17 @@
   &:hover {
     opacity: 0.7;
   }
+}
+
+.footer-instagram-text {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 0.75rem;
+  color: #000;
+  opacity: 0.6;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .footer-copyright {
