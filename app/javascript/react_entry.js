@@ -5,6 +5,8 @@ import App from "./components/App"
 import Navbar from "./components/Navbar"
 import About from "./components/About"
 import Footer from "./components/Footer"
+import SpacesList from "./components/SpacesList"
+import StoresList from "./components/StoresList"
 
 document.addEventListener("DOMContentLoaded", () => {
   // Mount main App component
@@ -17,21 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mount Navbar component
   const navbarEl = document.getElementById("navbar-root")
   if (navbarEl) {
-    // Get playlist ID from data attribute
-    let playlistId = navbarEl.dataset.playlistId || navbarEl.getAttribute("data-playlist-id")
-    // Convert empty string to null for cleaner prop handling
-    if (playlistId === "" || playlistId === null || playlistId === undefined) {
-      playlistId = null
-    }
     // Get logo path from data attribute (or use default)
     const logoPath = navbarEl.dataset.logoPath || "/assets/logo4.png"
 
-    console.log("Navbar - Playlist ID:", playlistId)
-    console.log("Navbar - Logo Path:", logoPath)
-
     try {
       const navbarRoot = createRoot(navbarEl)
-      navbarRoot.render(React.createElement(Navbar, { playlistId, logoPath }))
+      navbarRoot.render(React.createElement(Navbar, { logoPath }))
     } catch (error) {
       console.error("Error mounting Navbar:", error)
     }
@@ -65,5 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   } else {
     console.error("About mount point not found: #about-root")
+  }
+
+  // Mount SpacesList component
+  const spacesListEl = document.getElementById("spaces-list-root")
+  if (spacesListEl) {
+    try {
+      const spacesData = JSON.parse(spacesListEl.dataset.spaces || "[]")
+      const spacesListRoot = createRoot(spacesListEl)
+      spacesListRoot.render(React.createElement(SpacesList, { spaces: spacesData }))
+    } catch (error) {
+      console.error("Error mounting SpacesList:", error)
+    }
+  }
+
+  // Mount StoresList component
+  const storesListEl = document.getElementById("stores-list-root")
+  if (storesListEl) {
+    try {
+      const storesData = JSON.parse(storesListEl.dataset.stores || "[]")
+      const storesListRoot = createRoot(storesListEl)
+      storesListRoot.render(React.createElement(StoresList, { stores: storesData }))
+    } catch (error) {
+      console.error("Error mounting StoresList:", error)
+    }
   }
 })

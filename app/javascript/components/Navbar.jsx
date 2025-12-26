@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import SpotifyWidget from "./SpotifyWidget";
 import { aboutState } from "./aboutState";
 
-export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
+export default function Navbar({ logoPath = "/assets/logo4.png" }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
   const dropdownRefs = {
@@ -121,9 +120,6 @@ export default function Navbar({ playlistId, logoPath = "/assets/logo4.png" }) {
               </button>
             </div>
           </span>
-        </div>
-        <div className="navbar-widget-wrapper">
-          <SpotifyWidget playlistId={playlistId} />
         </div>
       </div>
     </nav>
