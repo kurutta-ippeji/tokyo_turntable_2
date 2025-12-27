@@ -19,41 +19,62 @@ export default function Navbar({ logoPath = "/assets/logo4.png" }) {
     return unsubscribe;
   }, []);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      const isClickInside = Object.values(dropdownRefs).some(ref =>
-        ref.current && ref.current.contains(event.target)
-      );
-      if (!isClickInside) {
-        setOpenDropdown(null);
-      }
-    };
+  const handleDropdownEnter = (dropdownName) => {
+    setOpenDropdown(dropdownName);
+  };
 
-    if (openDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [openDropdown]);
-
-  const toggleDropdown = (dropdownName) => {
-    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  const handleDropdownLeave = () => {
+    setOpenDropdown(null);
   };
 
   const dropdowns = {
     spaces: {
       label: "Spaces",
-      items: [
-        { label: "Jazz Kissas", href: "/spaces/jazz-kissaten" },
-        { label: "Bars", href: "/spaces/bars" },
-        { label: "By Area", href: "/spaces/by-area" }
+      sections: [
+        {
+          header: "Style",
+          items: [
+            { label: "Jazz", href: "/spaces/style/jazz" },
+            { label: "Classical", href: "/spaces/style/classical" },
+            { label: "Folk", href: "/spaces/style/folk" },
+            { label: "DJ", href: "/spaces/style/dj" }
+          ]
+        },
+        {
+          header: "Area",
+          items: [
+            { label: "Setagaya", href: "/spaces/area/setagaya" },
+            { label: "Shibuya", href: "/spaces/area/shibuya" },
+            { label: "Shimokitazawa", href: "/spaces/area/shimokitazawa" },
+            { label: "Shinjuku", href: "/spaces/area/shinjuku" },
+            { label: "Other", href: "/spaces/area/other" }
+          ]
+        }
       ]
     },
     stores: {
       label: "Stores",
-      items: [
-        { label: "Notable", href: "/stores/notable" },
-        { label: "By Area", href: "/stores/by-area" },
+      sections: [
+        {
+          header: "Focus",
+          items: [
+            { label: "New Arrivals", href: "/stores/focus/new-arrivals" },
+            { label: "Vintage", href: "/stores/focus/vintage" },
+            { label: "Genre-specific", href: "/stores/focus/genre-specific" },
+            { label: "Crate digging", href: "/stores/focus/crate-digging" },
+            { label: "Record cafe", href: "/stores/focus/record-cafe" }
+          ]
+        },
+        {
+          header: "Area",
+          items: [
+            { label: "Setagaya", href: "/stores/area/setagaya" },
+            { label: "Shibuya", href: "/stores/area/shibuya" },
+            { label: "Shimokitazawa", href: "/stores/area/shimokitazawa" },
+            { label: "Shinjuku", href: "/stores/area/shinjuku" },
+            { label: "Other", href: "/stores/area/other" }
+          ]
+        }
       ]
     },
     guides: {
@@ -88,23 +109,49 @@ export default function Navbar({ logoPath = "/assets/logo4.png" }) {
                 <div
                   ref={dropdownRefs[key]}
                   className="navbar-phrase-col navbar-dropdown"
+                  onMouseEnter={() => handleDropdownEnter(key)}
+                  onMouseLeave={handleDropdownLeave}
                 >
                   <button
                     className="navbar-dropdown-toggle"
-                    onClick={() => toggleDropdown(key)}
                     aria-expanded={openDropdown === key}
                   >
                     {dropdown.label}
                   </button>
                   {openDropdown === key && (
-                    <ul className="navbar-dropdown-menu">
-                      {dropdown.items.map((item, index) => (
-                        <li key={index}>
-                          <a href={item.href} onClick={() => setOpenDropdown(null)}>
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
+                    <ul
+                      className={`navbar-dropdown-menu ${dropdown.sections ? 'navbar-dropdown-menu-sections' : ''}`}
+                      onMouseEnter={() => handleDropdownEnter(key)}
+                      onMouseLeave={handleDropdownLeave}
+                    >
+                      {dropdown.sections ? (
+                        // Render sections side by side
+                        dropdown.sections.map((section, sectionIndex) => (
+                          <li key={sectionIndex} className="navbar-dropdown-section">
+                            <div className="navbar-dropdown-header">
+                              {section.header}
+                            </div>
+                            <ul className="navbar-dropdown-section-items">
+                              {section.items.map((item, itemIndex) => (
+                                <li key={itemIndex}>
+                                  <a href={item.href}>
+                                    {item.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))
+                      ) : (
+                        // Render simple items (for stores, guides)
+                        dropdown.items.map((item, index) => (
+                          <li key={index}>
+                            <a href={item.href}>
+                              {item.label}
+                            </a>
+                          </li>
+                        ))
+                      )}
                     </ul>
                   )}
                 </div>
