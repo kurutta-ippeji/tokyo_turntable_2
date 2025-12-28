@@ -10,7 +10,6 @@ export default function Navbar() {
   const dropdownRefs = {
     spaces: useRef(null),
     stores: useRef(null),
-    guides: useRef(null),
     about: useRef(null)
   };
 
@@ -105,12 +104,9 @@ export default function Navbar() {
         }
       ]
     },
-    guides: {
-      label: "Guides",
-      items: [
-        { label: "Getting Started", href: "/guides/getting-started" },
-        { label: "Events", href: "/guides/events" }
-      ]
+    events: {
+      label: "Events",
+      href: "/events"
     }
   };
 
@@ -139,55 +135,65 @@ export default function Navbar() {
           <span className="navbar-phrases">
             {Object.entries(dropdowns).map(([key, dropdown], index) => (
               <React.Fragment key={key}>
-                <div
-                  ref={dropdownRefs[key]}
-                  className="navbar-phrase-col navbar-dropdown"
-                  onMouseEnter={() => handleDropdownEnter(key)}
-                  onMouseLeave={handleDropdownLeave}
-                >
-                  <button
-                    className="navbar-dropdown-toggle"
-                    aria-expanded={openDropdown === key}
+                {dropdown.href ? (
+                  // Simple link (no dropdown)
+                  <div className="navbar-phrase-col">
+                    <a href={dropdown.href} className="navbar-dropdown-toggle">
+                      {dropdown.label}
+                    </a>
+                  </div>
+                ) : (
+                  // Dropdown menu
+                  <div
+                    ref={dropdownRefs[key]}
+                    className="navbar-phrase-col navbar-dropdown"
+                    onMouseEnter={() => handleDropdownEnter(key)}
+                    onMouseLeave={handleDropdownLeave}
                   >
-                    {dropdown.label}
-                  </button>
-                  {openDropdown === key && (
-                    <ul
-                      className={`navbar-dropdown-menu ${dropdown.sections ? 'navbar-dropdown-menu-sections' : ''}`}
-                      onMouseEnter={() => handleDropdownEnter(key)}
-                      onMouseLeave={handleDropdownLeave}
+                    <button
+                      className="navbar-dropdown-toggle"
+                      aria-expanded={openDropdown === key}
                     >
-                      {dropdown.sections ? (
-                        // Render sections side by side
-                        dropdown.sections.map((section, sectionIndex) => (
-                          <li key={sectionIndex} className="navbar-dropdown-section">
-                            <div className="navbar-dropdown-header">
-                              {section.header}
-                            </div>
-                            <ul className="navbar-dropdown-section-items">
-                              {section.items.map((item, itemIndex) => (
-                                <li key={itemIndex}>
-                                  <a href={item.href}>
-                                    {item.label}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ))
-                      ) : (
-                        // Render simple items (for stores, guides)
-                        dropdown.items.map((item, index) => (
-                          <li key={index}>
-                            <a href={item.href}>
-                              {item.label}
-                            </a>
-                          </li>
-                        ))
-                      )}
-                    </ul>
-                  )}
-                </div>
+                      {dropdown.label}
+                    </button>
+                    {openDropdown === key && (
+                      <ul
+                        className={`navbar-dropdown-menu ${dropdown.sections ? 'navbar-dropdown-menu-sections' : ''}`}
+                        onMouseEnter={() => handleDropdownEnter(key)}
+                        onMouseLeave={handleDropdownLeave}
+                      >
+                        {dropdown.sections ? (
+                          // Render sections side by side
+                          dropdown.sections.map((section, sectionIndex) => (
+                            <li key={sectionIndex} className="navbar-dropdown-section">
+                              <div className="navbar-dropdown-header">
+                                {section.header}
+                              </div>
+                              <ul className="navbar-dropdown-section-items">
+                                {section.items.map((item, itemIndex) => (
+                                  <li key={itemIndex}>
+                                    <a href={item.href}>
+                                      {item.label}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </li>
+                          ))
+                        ) : (
+                          // Render simple items
+                          dropdown.items.map((item, index) => (
+                            <li key={index}>
+                              <a href={item.href}>
+                                {item.label}
+                              </a>
+                            </li>
+                          ))
+                        )}
+                      </ul>
+                    )}
+                  </div>
+                )}
                 <span className="navbar-phrase-separator">|</span>
               </React.Fragment>
             ))}

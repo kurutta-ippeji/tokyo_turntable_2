@@ -95,6 +95,7 @@
   color: inherit;
   cursor: pointer;
   padding: 0;
+  text-decoration: none; // Remove underline from links
   transition: color 0.2s;
 
   &:hover,

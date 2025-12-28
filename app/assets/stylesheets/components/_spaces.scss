@@ -5,8 +5,7 @@
   right: 0;
   bottom: 0;
   padding: 40px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden; // No scrolling
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +13,8 @@
   pointer-events: none;
 
   .spaces-list-title,
-  .spaces-grid {
+  .spaces-row-container,
+  .spaces-row-indicator {
     pointer-events: auto;
   }
 
@@ -30,13 +30,58 @@
   }
 }
 
+.spaces-row-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
 .spaces-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr); // Exactly 3 columns
   gap: 30px;
-  max-width: 1200px;
   width: 100%;
   padding: 0 20px;
+  flex: 1;
+}
+
+.spaces-nav-button {
+  background: $cream;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.spaces-row-indicator {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
 .space-card {
