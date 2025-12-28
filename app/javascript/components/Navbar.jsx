@@ -60,6 +60,7 @@ export default function Navbar() {
         {
           header: "Style",
           items: [
+            { label: "All", href: "/spaces" },
             { label: "Jazz", href: "/spaces/style/jazz" },
             { label: "Classical", href: "/spaces/style/classical" },
             { label: "Folk", href: "/spaces/style/folk" },
@@ -69,6 +70,7 @@ export default function Navbar() {
         {
           header: "Area",
           items: [
+            { label: "Anywhere", href: "/spaces" },
             { label: "Setagaya", href: "/spaces/area/setagaya" },
             { label: "Shibuya", href: "/spaces/area/shibuya" },
             { label: "Shimokitazawa", href: "/spaces/area/shimokitazawa" },
