@@ -1,36 +1,31 @@
 // Main navbar styles
 .navbar {
-  background-color: $cream;
+  background-color: transparent;
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
+  position: relative;
+  z-index: 1000;
+  pointer-events: none;
 
   .container-fluid {
     align-items: flex-start;
   }
 }
 
-.navbar-brand {
-  --bs-navbar-brand-padding-y: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.navbar-brand img {
-  height: 448px;
-  opacity: 100%;
-}
-
 .navbar-logo-wrapper {
-  position: relative;
-  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
 }
 
 .navbar-logo-tagline {
   position: absolute;
-  top: 54px;
+  margin-top: -8px;
   right: 260px;
   font-family: $tagline-font, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: .5rem;
@@ -39,7 +34,6 @@
   text-transform: uppercase;
   padding: 4px;
   letter-spacing: 0.01em;
-  z-index: 10;
   color: $cream;
   opacity: 0.6;
 }
@@ -55,14 +49,14 @@
 }
 
 .navbar-phrases {
-  position: absolute;
-  top: 124px;
+  position: fixed;
+  top: 104px;
   left: 24px;
   display: flex;
   align-items: flex-start;
   gap: 1.5em;
-  opacity: 0.4;
-  pointer-events: auto; // Changed from none to allow interactions
+  pointer-events: auto;
+  z-index: 1001;
 }
 
 .navbar-phrase-col {
@@ -74,18 +68,19 @@
   text-orientation: upright;
   line-height: 1.3;
   position: relative;
-  opacity: 100%;
+  color: rgba(0, 0, 0, 0.4); // Use color opacity instead of element opacity
 }
 
 .navbar-phrase-separator {
   font-family: "Cormorant", "Playfair Display", serif;
   font-size: 1.2rem;
-  opacity: 0.4;
+  color: rgba(0, 0, 0, 0.4); // Use color opacity instead of element opacity
   margin: 0 0.5em;
 }
 
 .navbar-dropdown {
   position: relative;
+  z-index: 1001;
 }
 
 .navbar-dropdown-toggle {
@@ -100,12 +95,11 @@
   color: inherit;
   cursor: pointer;
   padding: 0;
-  opacity: inherit;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 
   &:hover,
   &.active {
-    opacity: 0.9;
+    color: rgba(0, 0, 0, 0.9);
   }
 
   &:focus {
@@ -118,17 +112,17 @@
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 2px;
+  margin-top: 1.5px;
   padding: 8px 0;
   padding-top: 12px;
-  background-color: $cream;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: $cream; // Fully opaque cream background
+  border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   list-style: none;
   min-width: 180px;
-  z-index: 1000;
-  opacity: 1;
+  z-index: 1002;
+  opacity: .9; // Fully opaque - no longer inheriting from parent
   pointer-events: auto;
 
   &::before {
@@ -220,7 +214,7 @@
 }
 
 .navbar-logo-text {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 18px;
   padding: 0;
@@ -234,11 +228,25 @@
   line-height: 1.5;
   width: fit-content;
   max-width: fit-content;
+  z-index: 1000;
+  pointer-events: auto;
+  transition: z-index 0.3s, opacity 0.3s;
+
+  .navbar-logo-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
   .navbar-logo-tagline {
     position: static;
     font-size: 0.35em;
-    margin-top: 8px;
+    margin-top: 0px;
     margin-left: .4em;
     padding: 0;
     opacity: 0.7;
@@ -252,5 +260,18 @@
     line-height: 1.3;
     text-transform: uppercase;
     text-align: left;
+  }
+}
+
+.navbar-expanded-active {
+  .navbar-logo-text {
+    z-index: 1;
+    opacity: 0.3;
+  }
+
+  .navbar-phrases {
+    z-index: 1;
+    opacity: 0.2;
+    pointer-events: none;
   }
 }

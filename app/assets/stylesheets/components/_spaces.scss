@@ -1,7 +1,22 @@
 .spaces-list {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+
+  .spaces-list-title,
+  .spaces-grid {
+    pointer-events: auto;
+  }
 
   .spaces-list-title {
     font-family: "Inter", sans-serif;
@@ -9,27 +24,40 @@
     font-weight: 300;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: #000;
+    text-align: center;
   }
 }
 
 .spaces-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .space-card {
   background-color: $cream;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  &.space-card-expanded {
+    cursor: default;
+    transform: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 
   .space-card-image {
@@ -46,22 +74,22 @@
   }
 
   .space-card-content {
-    padding: 20px;
+    padding: 14px;
   }
 
   .space-card-name {
     font-family: "Inter", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0;
     color: #000;
   }
 
   .space-card-meta {
     font-family: "Cormorant", serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .space-card-category {
@@ -74,26 +102,45 @@
 
   .space-card-neighborhood {
     font-family: "Inter", sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.6);
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .space-card-description {
     font-family: "Inter", sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: rgba(0, 0, 0, 0.8);
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
   }
 
   .space-card-address {
     font-family: "Inter", sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.6);
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
+  }
+
+  .space-card-player {
+    margin: 12px 0;
+    width: 100%;
+
+    .space-card-player-label {
+      font-family: "Inter", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 6px 0;
+    }
+
+    iframe {
+      display: block;
+    }
   }
 
   .space-card-website {
@@ -108,5 +155,114 @@
     &:hover {
       opacity: 0.7;
     }
+  }
+
+  // Expanded card styles
+  &.space-card-expanded {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+
+    .space-card-image {
+      height: 250px;
+    }
+
+    .space-card-content {
+      padding: 24px;
+    }
+
+    .space-card-name {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .space-card-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      display: block;
+      -webkit-line-clamp: none;
+      -webkit-box-orient: initial;
+      overflow: visible;
+    }
+
+    .space-card-meta {
+      margin-bottom: 10px;
+    }
+
+    .space-card-neighborhood,
+    .space-card-address {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// Expanded card overlay
+.space-expanded-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  animation: fadeIn 0.3s ease;
+  pointer-events: auto;
+}
+
+.space-expanded-content {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  animation: slideUp 0.3s ease;
+  pointer-events: auto;
+}
+
+.space-expanded-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  z-index: 2001;
+  pointer-events: auto;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

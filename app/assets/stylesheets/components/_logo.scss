@@ -1,0 +1,18 @@
+.logo-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logo-link {
+  display: block;
+  pointer-events: auto;
+}
+
+.logo-image {
+  height: 448px;
+  opacity: 100%;
+  display: block;
+}
