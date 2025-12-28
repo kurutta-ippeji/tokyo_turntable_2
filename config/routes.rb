@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :spaces, only: [:index, :show]
+  get "spaces/style/:style", to: "spaces#by_style", as: :spaces_by_style
+  get "spaces/area/:area", to: "spaces#by_area", as: :spaces_by_area
   resources :stores, only: [:index, :show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

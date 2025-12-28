@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { aboutState } from "./aboutState";
+import { expandedState } from "./expandedState";
 
-export default function Navbar({ logoPath = "/assets/logo4.png" }) {
+export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
+  const [isExpanded, setIsExpanded] = useState(expandedState.getIsExpanded());
   const dropdownRefs = {
     spaces: useRef(null),
     stores: useRef(null),
@@ -19,8 +21,22 @@ export default function Navbar({ logoPath = "/assets/logo4.png" }) {
     return unsubscribe;
   }, []);
 
+  // Subscribe to expandedState changes
+  useEffect(() => {
+    const unsubscribe = expandedState.subscribe((value) => {
+      setIsExpanded(value);
+      // Close dropdowns when card is expanded
+      if (value) {
+        setOpenDropdown(null);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
   const handleDropdownEnter = (dropdownName) => {
-    setOpenDropdown(dropdownName);
+    if (!isExpanded) {
+      setOpenDropdown(dropdownName);
+    }
   };
 
   const handleDropdownLeave = () => {
@@ -92,12 +108,9 @@ export default function Navbar({ logoPath = "/assets/logo4.png" }) {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg position-relative">
+    <nav className={`navbar navbar-expand-lg position-relative ${isExpanded ? 'navbar-expanded-active' : ''}`}>
       <div className="container-fluid px-0">
         <div className="navbar-logo-wrapper">
-          <a href="/" className="navbar-brand d-flex align-items-center" data-turbo="false">
-            <img src={logoPath} alt="Tokyo Turntable" className="me-2" />
-          </a>
           <span className="navbar-logo-text">Tokyo Turntable
             <span className="navbar-logo-tagline">
               Listening spaces and record stores in Tokyo
