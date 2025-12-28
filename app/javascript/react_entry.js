@@ -8,11 +8,24 @@ import About from "./components/About"
 import Footer from "./components/Footer"
 import SpacesList from "./components/SpacesList"
 import StoresList from "./components/StoresList"
+import { aboutState } from "./components/aboutState"
 
 // Store roots to unmount on navigation
 const roots = new Map()
 
 function mountComponents() {
+  // Reset About state if we're not on a page with About section
+  const aboutEl = document.getElementById("about-root")
+  if (!aboutEl) {
+    aboutState.setShowAbout(false)
+  } else {
+    // If we're on home page, check URL hash to see if About should be shown
+    if (window.location.hash === "#about") {
+      aboutState.setShowAbout(true)
+      // Remove hash from URL without triggering navigation
+      window.history.replaceState(null, "", window.location.pathname)
+    }
+  }
   // Unmount previous roots
   roots.forEach((root, element) => {
     try {
@@ -71,7 +84,6 @@ function mountComponents() {
   }
 
   // Mount About component
-  const aboutEl = document.getElementById("about-root")
   if (aboutEl) {
     try {
       const aboutRoot = createRoot(aboutEl)

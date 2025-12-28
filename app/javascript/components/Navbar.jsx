@@ -6,12 +6,22 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
   const [isExpanded, setIsExpanded] = useState(expandedState.getIsExpanded());
+  const [hasAboutSection, setHasAboutSection] = useState(false);
   const dropdownRefs = {
     spaces: useRef(null),
     stores: useRef(null),
     guides: useRef(null),
     about: useRef(null)
   };
+
+  // Check if we're on a page with About section
+  useEffect(() => {
+    const aboutRoot = document.getElementById("about-root");
+    setHasAboutSection(!!aboutRoot);
+    if (!aboutRoot) {
+      setShowAbout(false);
+    }
+  }, []);
 
   // Subscribe to aboutState changes
   useEffect(() => {
@@ -104,7 +114,14 @@ export default function Navbar() {
 
   const handleAboutClick = (e) => {
     e.preventDefault();
-    aboutState.setShowAbout(true);
+    // Check if we're on the home page (has about-root element)
+    const aboutRoot = document.getElementById("about-root");
+    if (aboutRoot) {
+      aboutState.setShowAbout(true);
+    } else {
+      // Navigate to home page with hash to indicate About should be shown
+      window.location.href = "/#about";
+    }
   };
 
   return (
@@ -174,7 +191,7 @@ export default function Navbar() {
             ))}
             <div className="navbar-phrase-col">
               <button
-                className={`navbar-dropdown-toggle ${showAbout ? 'active' : ''}`}
+                className={`navbar-dropdown-toggle ${showAbout && hasAboutSection ? 'active' : ''}`}
                 onClick={handleAboutClick}
               >
                 About
