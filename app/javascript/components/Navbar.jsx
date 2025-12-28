@@ -111,7 +111,8 @@ export default function Navbar() {
     <nav className={`navbar navbar-expand-lg position-relative ${isExpanded ? 'navbar-expanded-active' : ''}`}>
       <div className="container-fluid px-0">
         <div className="navbar-logo-wrapper">
-          <span className="navbar-logo-text">Tokyo Turntable
+          <span className="navbar-logo-text">
+            <a href="/" className="navbar-logo-link" data-turbo="false">Tokyo Turntable</a>
             <span className="navbar-logo-tagline">
               Listening spaces and record stores in Tokyo
             </span>

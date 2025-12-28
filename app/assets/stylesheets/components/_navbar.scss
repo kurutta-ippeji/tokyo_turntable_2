@@ -232,6 +232,17 @@
   pointer-events: auto;
   transition: z-index 0.3s, opacity 0.3s;
 
+  .navbar-logo-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
   .navbar-logo-tagline {
     position: static;
     font-size: 0.35em;
