@@ -1,7 +1,22 @@
 .stores-list {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px;
+  overflow: hidden; // No scrolling
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+
+  .stores-list-title,
+  .stores-grid,
+  .stores-empty {
+    pointer-events: auto;
+  }
 
   .stores-list-title {
     font-family: "Inter", sans-serif;
@@ -9,15 +24,27 @@
     font-weight: 300;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: #000;
+    text-align: center;
+  }
+
+  .stores-empty {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin-top: 40px;
   }
 }
 
 .stores-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr); // Exactly 3 columns
   gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .store-card {

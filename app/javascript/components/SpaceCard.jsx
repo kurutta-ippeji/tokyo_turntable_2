@@ -47,7 +47,7 @@ export default function SpaceCard({ space, isExpanded = false, onClick }) {
         )}
         {space.bandcamp && isExpanded && (
           <div className="space-card-player">
-            <p className="space-card-player-label">On the turntable:</p>
+            <p className="space-card-player-label">Listen in:</p>
             <iframe
               key={`bandcamp-${space.id}`}
               style={{ border: 0, width: "100%", height: "42px" }}

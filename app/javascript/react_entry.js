@@ -125,12 +125,25 @@ function mountComponents() {
   const storesListEl = document.getElementById("stores-list-root")
   if (storesListEl) {
     try {
-      const storesData = JSON.parse(storesListEl.dataset.stores || "[]")
+      // Try to get data from script tag first, then fall back to data attribute
+      let storesJson = "[]"
+      const storesDataScript = document.getElementById("stores-data")
+      if (storesDataScript) {
+        storesJson = storesDataScript.textContent.trim()
+      } else if (storesListEl.dataset.stores) {
+        storesJson = storesListEl.dataset.stores
+      }
+
+      const storesData = JSON.parse(storesJson)
+      const title = storesListEl.dataset.title || "Record Stores"
+      console.log("StoresList - Title:", title)
+      console.log("StoresList - Stores count:", storesData.length)
       const storesListRoot = createRoot(storesListEl)
-      storesListRoot.render(React.createElement(StoresList, { stores: storesData }))
+      storesListRoot.render(React.createElement(StoresList, { stores: storesData, title }))
       roots.set(storesListEl, storesListRoot)
     } catch (error) {
       console.error("Error mounting StoresList:", error)
+      console.error("Error details:", error.message, error.stack)
     }
   }
 }

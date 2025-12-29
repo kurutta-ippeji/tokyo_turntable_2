@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { aboutState } from "./aboutState";
 
 export default function About() {
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
 
-  useEffect(() => {
+  // Use useLayoutEffect for synchronous updates before paint
+  useLayoutEffect(() => {
     const unsubscribe = aboutState.subscribe((value) => {
       setShowAbout(value);
     });
     return unsubscribe;
   }, []);
 
-  if (!showAbout) {
-    return null;
-  }
-
   return (
-    <div className="about-container">
+    <div className={`about-container ${showAbout ? 'about-visible' : 'about-hidden'}`}>
       <div className="about-header">
         <h1>About</h1>
       </div>

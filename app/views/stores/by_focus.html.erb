@@ -8,7 +8,7 @@
     <%= @stores.to_json.html_safe %>
   </script>
   <div id="stores-list-root"
-       data-title="Record Stores"
+       data-title="<%= "#{@filter_value}" %>"
        style="min-height: 200px;">
   </div>
   <div id="footer-root"

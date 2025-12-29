@@ -13,7 +13,7 @@ spaces_data = [
     address: "1-37-14 Matsubara, Setagaya-ku, Tokyo 156-0043",
     website_url: nil,
     photo_url: "https://i.pinimg.com/736x/37/30/ba/3730badaec01be4a4904911693d351c1.jpg",
-    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=3270325797/size=small/bgcol=333333/linkcol=e32c14/transparent=true/"
+    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=3270325797/size=small/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/"
   },
   {
     name: "Ragtime",
@@ -24,7 +24,7 @@ spaces_data = [
     address: "5-17-13 Minami-Karasuyama, Setagaya-ku, Tokyo 157-0062",
     website_url: "https://ragtime1978.wixsite.com/jazz",
     photo_url: "https://int.fnl-guide.com/uploads_image/2025/09/22/p1j5p24rm3m98slt1deq13uh1mfi5.jpg",
-    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=3072182337/size=small/bgcol=333333/linkcol=ffffff/transparent=true/"
+    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=3072182337/size=small/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/"
   },
   {
     name: "Masako",
@@ -35,7 +35,7 @@ spaces_data = [
     address: "Shinjuku-ku, Tokyo (exact address undisclosed)",
     website_url: nil,
     photo_url: "https://insheepsclothinghifi.com/wordpress/wp-content/uploads/2025/01/masako_web_2-1024x677.jpg",
-    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=2003948830/size=small/bgcol=333333/linkcol=ffffff/transparent=true/"
+    bandcamp: "https://bandcamp.com/EmbeddedPlayer/album=2003948830/size=small/bgcol=333333/linkcol=ffffff/artwork=none/transparent=true/"
   },
   {
     name: "Bar Open",

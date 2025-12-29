@@ -10,8 +10,8 @@ export default function StoreCard({ store }) {
       )}
       <div className="store-card-content">
         <h3 className="store-card-name">{store.name}</h3>
-        {store.neighborhood && (
-          <p className="store-card-neighborhood">{store.neighborhood}</p>
+        {store.area && (
+          <p className="store-card-neighborhood">{store.area}</p>
         )}
         {store.description && (
           <p className="store-card-description">{store.description}</p>
