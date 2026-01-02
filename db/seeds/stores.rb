@@ -61,7 +61,7 @@ stores_data = [
     name: "Creole Coffee Stand",
     focus: ["Record Cafe", "Genre-specific", "Curated"],
     description: "A vinyl-focused coffee stand specializing in music rooted in Louisiana and Mississippi Creole and blues traditions. Records from the American South are carefully selected, played, and sold, making the space feel closer to a listening room than a typical café — built for coffee, analog sound, and deep regional music culture.",
-    neighborhood: "Higashi-Nagasaki (Toshima)",
+    area: "Higashi-Nagasaki (Toshima)",
     address: "4-7-18 Nagasaki, Toshima City, Tokyo 171-0051, Japan",
     website_url: "https://creolecoffeestand.stores.jp/",
     photo_url: nil

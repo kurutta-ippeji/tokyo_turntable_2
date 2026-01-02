@@ -38,6 +38,7 @@
   width: 100%;
   max-width: 1200px;
   gap: 20px;
+  margin-top: 80px; // Compensate for removed header (2.4rem title + 30px margin-bottom)
 }
 
 .spaces-grid {

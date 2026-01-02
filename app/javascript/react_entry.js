@@ -8,6 +8,7 @@ import About from "./components/About"
 import Footer from "./components/Footer"
 import SpacesList from "./components/SpacesList"
 import StoresList from "./components/StoresList"
+import PageTagline from "./components/PageTagline"
 import { aboutState } from "./components/aboutState"
 
 // Store roots to unmount on navigation
@@ -104,6 +105,21 @@ function mountComponents() {
       roots.set(aboutEl, aboutRoot)
     } catch (error) {
       console.error("Error mounting About:", error)
+    }
+  }
+
+  // Mount PageTagline component
+  const pageTaglineEl = document.getElementById("page-tagline-root")
+  if (pageTaglineEl) {
+    try {
+      const category = pageTaglineEl.dataset.category || null
+      const filterType = pageTaglineEl.dataset.filterType || null
+      const filterValue = pageTaglineEl.dataset.filterValue || null
+      const pageTaglineRoot = createRoot(pageTaglineEl)
+      pageTaglineRoot.render(React.createElement(PageTagline, { category, filterType, filterValue }))
+      roots.set(pageTaglineEl, pageTaglineRoot)
+    } catch (error) {
+      console.error("Error mounting PageTagline:", error)
     }
   }
 

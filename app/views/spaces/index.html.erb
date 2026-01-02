@@ -6,6 +6,11 @@
        data-spaces-areas="<%= @spaces_areas.to_json %>"
        data-stores-areas="<%= @stores_areas.to_json %>">
   </div>
+  <div id="page-tagline-root"
+       data-category="<%= @page_category %>"
+       data-filter-type="<%= @filter_type %>"
+       data-filter-value="<%= @filter_value %>">
+  </div>
   <div id="spaces-list-root" data-spaces="<%= @spaces.to_json %>"></div>
   <div id="footer-root"
        data-instagram-image-path="<%= image_path('instagram_logo.png') %>">
