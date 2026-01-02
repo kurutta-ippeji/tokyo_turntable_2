@@ -52,21 +52,21 @@ export default function Navbar({ spacesAreas = [], storesAreas = [] }) {
     setOpenDropdown(null);
   };
 
-  // Generate area items dynamically from props
+  // Generate area items dynamically from props, with "Anywhere" at the end
   const spacesAreaItems = [
-    { label: "Anywhere", href: "/spaces" },
     ...spacesAreas.map(area => ({
       label: area,
       href: `/spaces/area/${area.toLowerCase()}`
-    }))
+    })),
+    { label: "Anywhere", href: "/spaces" }
   ];
 
   const storesAreaItems = [
-    { label: "Anywhere", href: "/stores" },
     ...storesAreas.map(area => ({
       label: area,
       href: `/stores/area/${area.toLowerCase()}`
-    }))
+    })),
+    { label: "Anywhere", href: "/stores" }
   ];
 
   const dropdowns = {
@@ -76,11 +76,11 @@ export default function Navbar({ spacesAreas = [], storesAreas = [] }) {
         {
           header: "Style",
           items: [
-            { label: "All", href: "/spaces" },
             { label: "Jazz", href: "/spaces/style/jazz" },
             { label: "Classical", href: "/spaces/style/classical" },
             { label: "Folk", href: "/spaces/style/folk" },
-            { label: "DJ", href: "/spaces/style/dj" }
+            { label: "DJ", href: "/spaces/style/dj" },
+            { label: "Any", href: "/spaces" }
           ]
         },
         {
@@ -95,11 +95,11 @@ export default function Navbar({ spacesAreas = [], storesAreas = [] }) {
         {
           header: "Focus",
           items: [
-            { label: "All", href: "/stores" },
             { label: "Curated", href: "/stores/focus/curated" },
             { label: "Genre-specific", href: "/stores/focus/genre-specific" },
             { label: "Vintage", href: "/stores/focus/vintage" },
-            { label: "Record cafe", href: "/stores/focus/record-cafe" }
+            { label: "Record cafe", href: "/stores/focus/record-cafe" },
+            { label: "Any", href: "/stores" }
           ]
         },
         {
