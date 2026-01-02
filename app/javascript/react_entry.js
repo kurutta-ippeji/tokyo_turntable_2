@@ -61,8 +61,21 @@ function mountComponents() {
   const navbarEl = document.getElementById("navbar-root")
   if (navbarEl) {
     try {
+      // Get areas data from data attributes
+      let spacesAreas = []
+      let storesAreas = []
+      try {
+        if (navbarEl.dataset.spacesAreas) {
+          spacesAreas = JSON.parse(navbarEl.dataset.spacesAreas)
+        }
+        if (navbarEl.dataset.storesAreas) {
+          storesAreas = JSON.parse(navbarEl.dataset.storesAreas)
+        }
+      } catch (error) {
+        console.error("Error parsing areas data:", error)
+      }
       const navbarRoot = createRoot(navbarEl)
-      navbarRoot.render(React.createElement(Navbar))
+      navbarRoot.render(React.createElement(Navbar, { spacesAreas, storesAreas }))
       roots.set(navbarEl, navbarRoot)
     } catch (error) {
       console.error("Error mounting Navbar:", error)

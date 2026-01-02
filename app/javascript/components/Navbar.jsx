@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { aboutState } from "./aboutState";
 import { expandedState } from "./expandedState";
 
-export default function Navbar() {
+export default function Navbar({ spacesAreas = [], storesAreas = [] }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
   const [isExpanded, setIsExpanded] = useState(expandedState.getIsExpanded());
@@ -52,6 +52,23 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
+  // Generate area items dynamically from props
+  const spacesAreaItems = [
+    { label: "Anywhere", href: "/spaces" },
+    ...spacesAreas.map(area => ({
+      label: area,
+      href: `/spaces/area/${area.toLowerCase()}`
+    }))
+  ];
+
+  const storesAreaItems = [
+    { label: "Anywhere", href: "/stores" },
+    ...storesAreas.map(area => ({
+      label: area,
+      href: `/stores/area/${area.toLowerCase()}`
+    }))
+  ];
+
   const dropdowns = {
     spaces: {
       label: "Spaces",
@@ -68,14 +85,7 @@ export default function Navbar() {
         },
         {
           header: "Area",
-          items: [
-            { label: "Anywhere", href: "/spaces" },
-            { label: "Setagaya", href: "/spaces/area/setagaya" },
-            { label: "Shibuya", href: "/spaces/area/shibuya" },
-            { label: "Shimokitazawa", href: "/spaces/area/shimokitazawa" },
-            { label: "Shinjuku", href: "/spaces/area/shinjuku" },
-            { label: "Other", href: "/spaces/area/other" }
-          ]
+          items: spacesAreaItems
         }
       ]
     },
@@ -85,22 +95,16 @@ export default function Navbar() {
         {
           header: "Focus",
           items: [
-            { label: "New Arrivals", href: "/stores/focus/new-arrivals" },
-            { label: "Vintage", href: "/stores/focus/vintage" },
+            { label: "All", href: "/stores" },
+            { label: "Curated", href: "/stores/focus/curated" },
             { label: "Genre-specific", href: "/stores/focus/genre-specific" },
-            { label: "Crate digging", href: "/stores/focus/crate-digging" },
+            { label: "Vintage", href: "/stores/focus/vintage" },
             { label: "Record cafe", href: "/stores/focus/record-cafe" }
           ]
         },
         {
           header: "Area",
-          items: [
-            { label: "Setagaya", href: "/stores/area/setagaya" },
-            { label: "Shibuya", href: "/stores/area/shibuya" },
-            { label: "Shimokitazawa", href: "/stores/area/shimokitazawa" },
-            { label: "Shinjuku", href: "/stores/area/shinjuku" },
-            { label: "Other", href: "/stores/area/other" }
-          ]
+          items: storesAreaItems
         }
       ]
     },

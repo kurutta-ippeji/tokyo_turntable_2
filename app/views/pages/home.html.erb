@@ -2,7 +2,9 @@
   <div id="logo-root"
        data-logo-path="<%= image_path('logo4.png') %>">
   </div>
-  <div id="navbar-root">
+  <div id="navbar-root"
+       data-spaces-areas="<%= @spaces_areas.to_json %>"
+       data-stores-areas="<%= @stores_areas.to_json %>">
   </div>
   <div class="container">
   </div>

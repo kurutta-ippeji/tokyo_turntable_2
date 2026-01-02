@@ -16,9 +16,10 @@ class SpacesController < ApplicationController
   end
 
   def by_area
-    area_value = params[:area]
-    @spaces = Space.where(neighborhood: area_value)
+    area_value = params[:area].downcase
+    @spaces = Space.where("LOWER(neighborhood) = ?", area_value)
     @filter_type = "Area"
-    @filter_value = area_value
+    @filter_value = params[:area].capitalize
+    Rails.logger.info "Filtering spaces by area: #{area_value}, found: #{@spaces.count}"
   end
 end
