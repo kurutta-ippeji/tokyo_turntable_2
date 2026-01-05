@@ -53,7 +53,6 @@ export default function SpacesList({ spaces = [], title = "Listening Spaces" }) 
   if (spacesArray.length === 0) {
     return (
       <div className="spaces-list">
-        <h1 className="spaces-list-title">{title}</h1>
         <p className="spaces-empty">No spaces found.</p>
       </div>
     )
@@ -61,7 +60,6 @@ export default function SpacesList({ spaces = [], title = "Listening Spaces" }) 
 
   return (
     <div className="spaces-list">
-      <h1 className="spaces-list-title">{title}</h1>
       <div className="spaces-row-container">
         {currentRow > 0 && (
           <button

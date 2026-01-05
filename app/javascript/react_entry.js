@@ -8,6 +8,7 @@ import About from "./components/About"
 import Footer from "./components/Footer"
 import SpacesList from "./components/SpacesList"
 import StoresList from "./components/StoresList"
+import PageTagline from "./components/PageTagline"
 import { aboutState } from "./components/aboutState"
 
 // Store roots to unmount on navigation
@@ -61,8 +62,21 @@ function mountComponents() {
   const navbarEl = document.getElementById("navbar-root")
   if (navbarEl) {
     try {
+      // Get areas data from data attributes
+      let spacesAreas = []
+      let storesAreas = []
+      try {
+        if (navbarEl.dataset.spacesAreas) {
+          spacesAreas = JSON.parse(navbarEl.dataset.spacesAreas)
+        }
+        if (navbarEl.dataset.storesAreas) {
+          storesAreas = JSON.parse(navbarEl.dataset.storesAreas)
+        }
+      } catch (error) {
+        console.error("Error parsing areas data:", error)
+      }
       const navbarRoot = createRoot(navbarEl)
-      navbarRoot.render(React.createElement(Navbar))
+      navbarRoot.render(React.createElement(Navbar, { spacesAreas, storesAreas }))
       roots.set(navbarEl, navbarRoot)
     } catch (error) {
       console.error("Error mounting Navbar:", error)
@@ -91,6 +105,21 @@ function mountComponents() {
       roots.set(aboutEl, aboutRoot)
     } catch (error) {
       console.error("Error mounting About:", error)
+    }
+  }
+
+  // Mount PageTagline component
+  const pageTaglineEl = document.getElementById("page-tagline-root")
+  if (pageTaglineEl) {
+    try {
+      const category = pageTaglineEl.dataset.category || null
+      const filterType = pageTaglineEl.dataset.filterType || null
+      const filterValue = pageTaglineEl.dataset.filterValue || null
+      const pageTaglineRoot = createRoot(pageTaglineEl)
+      pageTaglineRoot.render(React.createElement(PageTagline, { category, filterType, filterValue }))
+      roots.set(pageTaglineEl, pageTaglineRoot)
+    } catch (error) {
+      console.error("Error mounting PageTagline:", error)
     }
   }
 
@@ -125,12 +154,25 @@ function mountComponents() {
   const storesListEl = document.getElementById("stores-list-root")
   if (storesListEl) {
     try {
-      const storesData = JSON.parse(storesListEl.dataset.stores || "[]")
+      // Try to get data from script tag first, then fall back to data attribute
+      let storesJson = "[]"
+      const storesDataScript = document.getElementById("stores-data")
+      if (storesDataScript) {
+        storesJson = storesDataScript.textContent.trim()
+      } else if (storesListEl.dataset.stores) {
+        storesJson = storesListEl.dataset.stores
+      }
+
+      const storesData = JSON.parse(storesJson)
+      const title = storesListEl.dataset.title || "Record Stores"
+      console.log("StoresList - Title:", title)
+      console.log("StoresList - Stores count:", storesData.length)
       const storesListRoot = createRoot(storesListEl)
-      storesListRoot.render(React.createElement(StoresList, { stores: storesData }))
+      storesListRoot.render(React.createElement(StoresList, { stores: storesData, title }))
       roots.set(storesListEl, storesListRoot)
     } catch (error) {
       console.error("Error mounting StoresList:", error)
+      console.error("Error details:", error.message, error.stack)
     }
   }
 }

@@ -1,7 +1,23 @@
 .stores-list {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px;
+  overflow: hidden; // No scrolling
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+
+  .stores-list-title,
+  .stores-row-container,
+  .stores-row-indicator,
+  .stores-empty {
+    pointer-events: auto;
+  }
 
   .stores-list-title {
     font-family: "Inter", sans-serif;
@@ -9,15 +25,73 @@
     font-weight: 300;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: #000;
+    text-align: center;
   }
+
+  .stores-empty {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin-top: 40px;
+  }
+}
+
+.stores-row-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+  margin-top: 80px; // Compensate for removed header (2.4rem title + 30px margin-bottom)
 }
 
 .stores-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr); // Exactly 3 columns
   gap: 30px;
+  width: 100%;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.stores-nav-button {
+  background: $cream;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.stores-row-indicator {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
 .store-card {

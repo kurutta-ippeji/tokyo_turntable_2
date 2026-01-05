@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { aboutState } from "./aboutState";
 import { expandedState } from "./expandedState";
 
-export default function Navbar() {
+export default function Navbar({ spacesAreas = [], storesAreas = [] }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [showAbout, setShowAbout] = useState(aboutState.getShowAbout());
   const [isExpanded, setIsExpanded] = useState(expandedState.getIsExpanded());
@@ -52,6 +52,23 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
+  // Generate area items dynamically from props, with "Anywhere" at the end
+  const spacesAreaItems = [
+    ...spacesAreas.map(area => ({
+      label: area,
+      href: `/spaces/area/${area.toLowerCase()}`
+    })),
+    { label: "Anywhere", href: "/spaces" }
+  ];
+
+  const storesAreaItems = [
+    ...storesAreas.map(area => ({
+      label: area,
+      href: `/stores/area/${area.toLowerCase()}`
+    })),
+    { label: "Anywhere", href: "/stores" }
+  ];
+
   const dropdowns = {
     spaces: {
       label: "Spaces",
@@ -59,23 +76,16 @@ export default function Navbar() {
         {
           header: "Style",
           items: [
-            { label: "All", href: "/spaces" },
             { label: "Jazz", href: "/spaces/style/jazz" },
             { label: "Classical", href: "/spaces/style/classical" },
             { label: "Folk", href: "/spaces/style/folk" },
-            { label: "DJ", href: "/spaces/style/dj" }
+            { label: "DJ", href: "/spaces/style/dj" },
+            { label: "Any", href: "/spaces" }
           ]
         },
         {
           header: "Area",
-          items: [
-            { label: "Anywhere", href: "/spaces" },
-            { label: "Setagaya", href: "/spaces/area/setagaya" },
-            { label: "Shibuya", href: "/spaces/area/shibuya" },
-            { label: "Shimokitazawa", href: "/spaces/area/shimokitazawa" },
-            { label: "Shinjuku", href: "/spaces/area/shinjuku" },
-            { label: "Other", href: "/spaces/area/other" }
-          ]
+          items: spacesAreaItems
         }
       ]
     },
@@ -85,22 +95,16 @@ export default function Navbar() {
         {
           header: "Focus",
           items: [
-            { label: "New Arrivals", href: "/stores/focus/new-arrivals" },
-            { label: "Vintage", href: "/stores/focus/vintage" },
+            { label: "Curated", href: "/stores/focus/curated" },
             { label: "Genre-specific", href: "/stores/focus/genre-specific" },
-            { label: "Crate digging", href: "/stores/focus/crate-digging" },
-            { label: "Record cafe", href: "/stores/focus/record-cafe" }
+            { label: "Vintage", href: "/stores/focus/vintage" },
+            { label: "Record cafe", href: "/stores/focus/record-cafe" },
+            { label: "Any", href: "/stores" }
           ]
         },
         {
           header: "Area",
-          items: [
-            { label: "Setagaya", href: "/stores/area/setagaya" },
-            { label: "Shibuya", href: "/stores/area/shibuya" },
-            { label: "Shimokitazawa", href: "/stores/area/shimokitazawa" },
-            { label: "Shinjuku", href: "/stores/area/shinjuku" },
-            { label: "Other", href: "/stores/area/other" }
-          ]
+          items: storesAreaItems
         }
       ]
     },

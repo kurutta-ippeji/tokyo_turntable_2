@@ -1,0 +1,12 @@
+.page-tagline {
+  position: fixed;
+  top: 14px;
+  right: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: .95rem;
+  font-weight: 400;
+  color: rgba(92, 89, 89, 0.8);
+  letter-spacing: 0.05em;
+  z-index: 1000;
+  pointer-events: none;
+}
